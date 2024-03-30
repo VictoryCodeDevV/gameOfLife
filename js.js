@@ -3,9 +3,6 @@ const ctx = cnv.getContext('2d')
 
 
 
-// cnv.height = 400;
-
-
 fieldSize = 15; // cells
 cellSize = 50; //px
 w = h = fieldSize * cellSize;
@@ -17,8 +14,12 @@ cnv.height = h;
 
 // }
 flag = 0;
+drawing = true;
 pauseBtn = document.getElementById('pauseBtn');
+
+
 pauseBtn.onclick = () => {
+    cnv.removeEventListener('click', listener);
     if (flag==0) {
         flag= 1;
         pauseBtn.innerHTML = "Pause"
@@ -36,28 +37,28 @@ pauseBtn.onclick = () => {
 // закрасить ячейку
 
 
-field = emptyFieldConstructor(fieldSize)
-
-cnv.addEventListener('click', (e) => {
-    let rect = cnv.getBoundingClientRect()
-    let x = e.clientX - rect.left;
-    let y = e.clientY - rect.top;
-
-    cellX = Math.floor(x/cellSize);
-    cellY = Math.floor(y/cellSize);
-
-    field[cellY][cellX] = (field[cellY][cellX] == 0) ? 1 : 0
-    console.log(field);
-    ctx.clearRect(0, 0, w, h);
-    Render();
-})
 
 
 
-// function fieldCreate() {
+function fieldCreate() {
+    field = emptyFieldConstructor(fieldSize)
+    listener = (e) => {
+        let rect = cnv.getBoundingClientRect()
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+    
+        cellX = Math.floor(x/cellSize);
+        cellY = Math.floor(y/cellSize);
+    
+        field[cellY][cellX] = (field[cellY][cellX] == 0) ? 1 : 0
+        console.log(field);
+        ctx.clearRect(0, 0, w, h);
+        Render();
+    }
+    cnv.addEventListener('click', listener)
+}
 
-// }
-
+fieldCreate()
 
 
 
@@ -69,22 +70,6 @@ cnv.addEventListener('click', (e) => {
 // --------------------------------
 
 
-// field = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-//          [0,0,0,1,1,1,0,0,0,1,1,1,0,0,0],
-//          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-//          [0,1,0,0,0,0,1,0,1,0,0,0,0,1,0],
-//          [0,1,0,0,0,0,1,0,1,0,0,0,0,1,0],
-//          [0,1,0,0,0,0,1,0,1,0,0,0,0,1,0],
-//          [0,0,0,1,1,1,0,0,0,1,1,1,0,0,0],
-//          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-//          [0,0,0,1,1,1,0,0,0,1,1,1,0,0,0],
-//          [0,1,0,0,0,0,1,0,1,0,0,0,0,1,0],
-//          [0,1,0,0,0,0,1,0,1,0,0,0,0,1,0],
-//          [0,1,0,0,0,0,1,0,1,0,0,0,0,1,0],
-//          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-//          [0,0,0,1,1,1,0,0,0,1,1,1,0,0,0],
-//          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],];
-
 // ctx.strokeRect(0, 0, w,h)
 ctx.strokeRect(0, 0, w,h)
 
@@ -95,10 +80,10 @@ ctx.strokeRect(0, 0, w,h)
 
 
 DrawEmpyCell = (x,y) => {
-    ctx.strokeRect(x*50,y*50, 50,50);
+    ctx.strokeRect(x*cellSize,y*cellSize, cellSize,cellSize);
 }
 DrawLivingCell = (x,y) => {
-    ctx.fillRect(x*50,y*50, 50,50);
+    ctx.fillRect(x*cellSize,y*cellSize, cellSize,cellSize);
 }
 
 function Render() {
