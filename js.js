@@ -2,6 +2,18 @@ const cnv = document.getElementById('cnv');
 const ctx = cnv.getContext('2d')
 
 
+// class Game {
+//     constructor(fieldSize, cellSize) {
+//         this.fieldSize = fieldSize;
+//         this.cellSize = cellSize;
+//     }
+//     w = h = fieldSize * cellSize;
+// }
+
+
+
+
+
 
 fieldSize = 15; // cells
 cellSize = 50; //px
@@ -10,16 +22,13 @@ w = h = fieldSize * cellSize;
 cnv.width = w;
 cnv.height = h;
 
-// function createField {
-
-// }
 flag = 0;
 drawing = true;
 pauseBtn = document.getElementById('pauseBtn');
 
 
 pauseBtn.onclick = () => {
-    cnv.removeEventListener('click', listener);
+    // cnv.removeEventListener('click', listener);
     if (flag==0) {
         flag= 1;
         pauseBtn.innerHTML = "Pause"
@@ -51,7 +60,6 @@ function fieldCreate() {
         cellY = Math.floor(y/cellSize);
     
         field[cellY][cellX] = (field[cellY][cellX] == 0) ? 1 : 0
-        console.log(field);
         ctx.clearRect(0, 0, w, h);
         Render();
     }
@@ -80,10 +88,13 @@ ctx.strokeRect(0, 0, w,h)
 
 
 DrawEmpyCell = (x,y) => {
+    ctx.strokeStyle = '#000'
     ctx.strokeRect(x*cellSize,y*cellSize, cellSize,cellSize);
 }
 DrawLivingCell = (x,y) => {
+    ctx.fillStyle = '#CED305'
     ctx.fillRect(x*cellSize,y*cellSize, cellSize,cellSize);
+    ctx.strokeRect(x*cellSize,y*cellSize, cellSize,cellSize);
 }
 
 function Render() {
@@ -168,8 +179,21 @@ function Update() {
     Render()
 }
 
+// 300
+let gameSpeed = 5;
+interval = setInterval(Update, 1200/gameSpeed)
+gameInputSpeed = document.getElementById('gameInputSpeed')
+speedValue = document.getElementById('speedValue')
+gameInputSpeed.value = 5;
+gameInputSpeed.addEventListener('input', (e) => {
+    gameSpeed = +e.target.value;
+    clearInterval(interval)
+    interval = setInterval(Update, 1200/gameSpeed)
 
-interval = setInterval(Update, 300)
+    speedValue.innerHTML = gameSpeed
+})
+
+
 
 
 

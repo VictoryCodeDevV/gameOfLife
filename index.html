@@ -4,15 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Game of Life VictoryCode</title>
 </head>
 <body>
+   
+    
     <div id="game" class="game">
+        <div class="controls">
+            <input id="gameInputSpeed" type="range" min="1" max="10" value="5" step="1">
+            <span id="speedValue">5</span>
+        </div>
+        <header class="header">
+            <h1 class="title">VictoryCode <span>Game of Life</span></h1>
+        </header>
         <canvas id="cnv" class="canvas"></canvas>
 
         <button id="pauseBtn" class="pauseBtn">Play</button>
-        <button id="start" class="start">Play</button>
     </div>
+
+    <!-- <div class="desctiption">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatibus maxime reiciendis ex deserunt culpa temporibus ab dolor dolore, cum quaerat, eum laboriosam, eligendi minima? Quaerat minus ducimus dolor repudiandae.
+        Ut unde autem corrupti enim veniam ullam dolore doloribus commodi veritatis quam nemo fugiat, repudiandae fuga omnis totam ipsum aperiam provident soluta odio labore sapiente nostrum! Nobis consequatur distinctio sint!
+        Consequatur nesciunt mollitia vitae vero perspiciatis. Esse minus cupiditate unde quis saepe vitae nisi rem accusamus itaque consectetur expedita blanditiis, dolorum similique ducimus, accusantium, architecto eligendi magnam repellendus incidunt magni.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatibus maxime reiciendis ex deserunt culpa temporibus ab dolor dolore, cum quaerat, eum laboriosam, eligendi minima? Quaerat minus ducimus dolor repudiandae.
+            Ut unde autem corrupti enim veniam ullam dolore doloribus commodi veritatis quam nemo fugiat, repudiandae fuga omnis totam ipsum aperiam provident soluta odio labore sapiente nostrum! Nobis consequatur distinctio sint!
+            Consequatur nesciunt mollitia vitae vero perspiciatis. Esse minus cupiditate unde quis saepe vitae nisi rem accusamus itaque consectetur expedita blanditiis, dolorum similique ducimus, accusantium, architecto eligendi magnam repellendus incidunt magni.</p>
+    
+    </div> -->
 
     <script src="js.js"></script>
 </body>

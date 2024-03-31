@@ -29,6 +29,38 @@
 
     position: absolute;
     left: 50%;
-    top: 82%;
-    transform: translate(-50%, -50%);
+    top: 90%;
+    transform: translateX(-50%);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333333;
+    padding: 0;
+}
+.title {
+    font-size: 50px;
+    color: #fff;
+    padding-left: 30px;
+}
+.title span {
+    color: #CED305;
+}
+
+
+
+.controls {
+    position: absolute;
+    right: 100px;
+    bottom: 100px;
 }
